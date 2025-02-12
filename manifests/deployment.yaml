@@ -1,4 +1,11 @@
-apiVersion: apps/v1
+startupProbe:
+  tcpSocket:
+    port: 3000
+  periodSeconds: 5
+  timeoutSeconds: 7
+  failureThreshold: 3
+  successThreshold: 1
+  initialDelaySeconds: 5apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: contoso-air-rwood
@@ -49,9 +56,9 @@ spec:
           startupProbe:
             tcpSocket:
               port: 3000
-            periodSeconds: 1
-            timeoutSeconds: 3
-            failureThreshold: 1
+            periodSeconds: 5
+            timeoutSeconds: 7
+            failureThreshold: 3
             successThreshold: 1
             initialDelaySeconds: 5
           securityContext:
